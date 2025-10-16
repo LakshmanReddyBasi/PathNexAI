@@ -3,11 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
-  ArrowRight,
-  Trophy,
-  Target,
-  Sparkles,
-  CheckCircle2,
+  ArrowRight
 } from "lucide-react";
 import HeroSection from "@/components/hero";
 import {
