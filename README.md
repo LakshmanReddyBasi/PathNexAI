@@ -1,34 +1,50 @@
 # 🌐 PathNexAI
 
-> **PathNexAI** is an intelligent AI-powered career guidance platform built with **Next.js**, **Tailwind CSS**, **Prisma**, **Neon Database**, and **Inngest**.  
-> It leverages **Google Gemini AI** to deliver personalized career recommendations, resume insights, and skill growth pathways.
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Framework-Next.js-black.svg)](https://nextjs.org/)
+[![Node.js](https://img.shields.io/badge/Platform-Node.js-brightgreen.svg)](https://nodejs.org/)
+[![Tailwind](https://img.shields.io/badge/CSS-Tailwind-blue.svg)](https://tailwindcss.com/)
+
+> **PathNexAI** is an AI-powered career guidance platform. It uses Google Gemini LLM to analyze user background, suggest growth paths, review resumes, and help with interview prep — all in a personalized way.
 
 ---
 
-## 🚀 Tech Stack
+## 🏆 Key Features
 
-| Technology | Description |
-|-------------|-------------|
-| **Next.js 14+** | React framework for building fast, full-stack web apps |
-| **Tailwind CSS** | Utility-first CSS framework for rapid UI development |
-| **Prisma ORM** | Type-safe database ORM for modern TypeScript projects |
-| **Neon DB** | Serverless Postgres database for scalable cloud storage |
-| **Inngest** | Reliable background jobs, scheduled tasks, and webhooks |
-| **Clerk** | Authentication and user management (Sign-in, Sign-up, Profiles) |
-| **Gemini API** | Google’s LLM for AI-driven insights and career recommendations |
+- Analyze user education, skills, and goals to suggest career paths
+- Generate personalized learning and upskilling plans
+- Resume & portfolio review, improvement suggestions
+- Interview questions preparation and mock feedback
+- Background tasks & notifications using Inngest
+- User authentication & profile management via Clerk
+- Persistent storage with Prisma + Neon DB
 
 ---
 
-## ⚙️ Getting Started
+## 📦 Tech Stack
 
-### 1️⃣ Clone the Repository
+| Layer / Component | Technology |
+|-------------------|------------|
+| Frontend & Server | Next.js (App Router) |
+| Styling | Tailwind CSS |
+| DB / ORM | Neon PostgreSQL + Prisma |
+| Authentication | Clerk (signup, signin, sessions) |
+| Background / Jobs | Inngest |
+| AI / LLM | Google Gemini API |
+| Infrastructure | Vercel (or your choice) |
+
+---
+
+## 🚀 Setup & Installation
+
+### 1. Clone the repo
 
 ```bash
-git clone https://github.com/<your-username>/pathnexai.git
-cd pathnexai
+git clone https://github.com/LakshmanReddyBasi/PathNexAI.git
+cd PathNexAI
 ```
 
-### 2️⃣ Install Dependencies
+### 2. Install dependencies
 
 ```bash
 npm install
@@ -36,137 +52,143 @@ npm install
 yarn install
 ```
 
-### 3️⃣ Create a `.env` File
+### 3. Environment Variables
 
-Create a `.env` file in the project root and add the following environment variables:
+Create a `.env` file in the project root with:
 
-```bash
-# Database
-DATABASE_URL="your_neon_database_url"
+```env
+DATABASE_URL="postgresql://username:password@host:port/dbname"
 
-# Clerk Authentication
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="your_clerk_publishable_key"
 CLERK_SECRET_KEY="your_clerk_secret_key"
 
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/onboarding
-NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
+NEXT_PUBLIC_CLERK_SIGN_IN_URL="/sign-in"
+NEXT_PUBLIC_CLERK_SIGN_UP_URL="/sign-up"
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL="/onboarding"
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL="/onboarding"
 
-# Gemini AI
 GEMINI_API_KEY="your_google_gemini_api_key"
 ```
 
-> 💡 Make sure your **Gemini API key** is valid — test it using a simple Node script before running the project.
+> ⚠️ Make sure your Gemini API key is enabled and valid (test before full usage).
 
----
-
-## 🧩 Database Setup
-
-Initialize and migrate your Prisma schema:
+### 4. Database & Prisma
 
 ```bash
 npx prisma generate
 npx prisma migrate dev --name init
 ```
 
-You can explore your Neon DB schema visually with Prisma Studio:
+(Optional) Seed the database if you’ve prepared seed scripts:
+
+```bash
+npx prisma db seed
+```
+
+Open Prisma Studio for DB inspection:
 
 ```bash
 npx prisma studio
 ```
 
----
-
-## 🧠 Using Gemini AI
-
-The app integrates **Google Gemini (Generative AI)** for generating:
-- Career path insights  
-- Personalized skill recommendations  
-- Resume and portfolio feedback  
-- Interview readiness evaluation  
-
-All API requests are handled via secure server routes using your `GEMINI_API_KEY`.
-
----
-
-## ⚡ Inngest Integration
-
-**Inngest** is used for:
-- Asynchronous background tasks  
-- Email notifications  
-- Scheduled workflows (e.g., daily career insights)  
-
-Start Inngest locally:
+### 5. Running Inngest locally
 
 ```bash
 npx inngest dev
 ```
 
----
+### 6. Start the app
 
-## 🧰 Available Scripts
+```bash
+npm run dev
+```
 
-| Command | Description |
-|----------|-------------|
-| `npm run dev` | Run the development server |
-| `npm run build` | Build the production app |
-| `npm start` | Start the production server |
-| `npm run lint` | Lint the codebase |
-| `npx prisma studio` | View and edit your database via Prisma Studio |
+Visit: `http://localhost:3000`
 
 ---
 
-## 📁 Folder Structure
+## 🎮 Usage / Demo
+
+Once registered / signed in, users can:
+
+1. Fill initial profile / onboarding data
+2. Ask AI for career path suggestions
+3. Get skill learning roadmaps
+4. Upload resume to get feedback
+5. Practice interview questions generated by AI
+
+*(Include screenshots or a GIF if you have a UI demo.)*
+
+---
+
+## 🧪 Scripts & Commands
+
+| Command | Purpose |
+|--------|---------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm start` | Run production server |
+| `npm run lint` | Lint code base |
+| `npx prisma studio` | Browse DB in GUI |
+| `npx prisma migrate dev` | Apply migrations |
+| `npx inngest dev` | Run Inngest worker locally |
+
+---
+
+## 📁 Project Structure
 
 ```
-pathnexai/
-│
-├── prisma/              # Prisma schema and migrations
-├── src/
-│   ├── app/             # Next.js app router pages
-│   ├── components/      # Reusable UI components
-│   ├── lib/             # Utility functions & API helpers
-│   ├── inngest/         # Inngest functions
-│   └── styles/          # Tailwind CSS setup
-│
-├── public/              # Static assets
-├── .env.example         # Example environment variables
+PathNexAI/
+├── actions/               # server/action handlers
+├── app/                   # Next.js (app router) pages & layouts
+├── components/            # UI / reusable React components
+├── data/                  # Static / sample data
+├── hooks/                 # Custom React hooks
+├── inngest/               # Inngest functions / workflows
+├── lib/                   # Utilities, API clients, helpers
+├── prisma/                # Prisma schema, migrations, seeds
+├── public/                # Public assets / static files
+├── styles/                # Tailwind CSS setup / global styles
+├── test-api.js            # Script to test Gemini API key
+├── eslint.config.mjs      # ESLint flat config
+├── next.config.mjs        # Next.js config
+├── tsconfig.json / jsconfig.json
+├── tailwind.config.mjs
 ├── package.json
 └── README.md
 ```
 
 ---
 
-## 🧑‍💻 Contributing
+## 🛠 Common Issues & Troubleshooting
 
-Contributions are welcome!  
+| Error / Symptom | Possible Cause | Solution |
+|-----------------|----------------|---------|
+| “API key not valid” | Wrong Gemini API key | Verify in Google Cloud console; test with a simple script |
+| `Cannot serialize key "parse"` | ESLint flat config using function parser | Use string parser in `eslint.config.mjs` (e.g. `"@typescript-eslint/parser"`) |
+| DB connection fails | Invalid `DATABASE_URL` or DB offline | Check Neon credentials & network access |
+| Inngest tasks not running | Worker not started, or webhook issues | Start `npx inngest dev`, check logs |
+
+---
+
+## 🤝 Contributing
 
 1. Fork the repo  
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)  
-3. Commit your changes (`git commit -m "Add amazing feature"`)  
-4. Push to your branch (`git push origin feature/amazing-feature`)  
-5. Open a Pull Request 🚀
+2. Create a branch: `git checkout -b feat/my-feature`  
+3. Commit your changes  
+4. Push branch & open a Pull Request  
+5. Include screenshots/tests where appropriate  
 
 ---
 
-## 🌍 Deployment
+## 📄 License
 
-Easily deploy **PathNexAI** on **Vercel** with:
-- **Neon** for the PostgreSQL database  
-- **Clerk** for authentication  
-- **Inngest** for serverless background jobs  
-
-Make sure to add all environment variables from your `.env` file into your Vercel project settings.
+This project is licensed under **MIT License** — see [LICENSE](LICENSE).
 
 ---
 
-## 🛡️ License
+## 💬 Contact & Support
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🌟 Support
-
-If you like this project, consider giving it a ⭐ on GitHub — it helps others discover **PathNexAI**!
+- Repository: [PathNexAI GitHub](https://github.com/LakshmanReddyBasi/PathNexAI)  
+- Author: Lakshman Reddy Basi  
+- For issues or feature requests, open an issue or pull request
